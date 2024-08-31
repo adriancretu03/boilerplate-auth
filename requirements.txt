@@ -1,0 +1,5 @@
+djangorestframework
+djoser
+django-cors-headers
+python-decouple
+django-ses
