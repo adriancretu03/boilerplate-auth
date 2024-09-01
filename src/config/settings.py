@@ -18,7 +18,7 @@ DEBUG = config("DJANGO_DEBUG", cast=bool, default=True)
 
 ALLOWED_HOSTS = config(
     "DJANGO_ALLOWED_HOSTS",
-    cast=list,
+    cast=lambda v: v if isinstance(v, list) else [s.strip() for s in v.split(",")],
     default=["127.0.0.1", "localhost"],
 )
 
@@ -137,9 +137,10 @@ MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
-AUTHENTICATION_BACKEND = [
+AUTHENTICATION_BACKENDS = [
     "social_core.backends.google.GoogleOAuth2",
     "social_core.backends.facebook.FacebookOAuth2",
+    "social_core.backends.github.GithubOAuth2",
     "django.contrib.auth.backends.ModelBackend",
 ]
 
@@ -163,6 +164,29 @@ AUTH_COOKIE_HTTP_ONLY = True
 AUTH_COOKIE_PATH = "/"
 AUTH_COOKIE_SAMESITE = "None"
 
+# social loggin configs
+# google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("GOOGLE_AUTH_KEY", cast=str)
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("GOOGLE_AUTH_SECRET", cast=str)
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "openid",
+]
+SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ["first_name", "last_name"]
+
+# facebook
+SOCIAL_AUTH_FACEBOOK_KEY = config("FACEBOOK_AUTH_KEY", cast=str)
+SOCIAL_AUTH_FACEBOOK_SECRET = config("FACEBOOK_AUTH_SECRET", cast=str)
+SOCIAL_AUTH_FACEBOOK_SCOPE = ["email"]
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    "fields": "email, first_name, last_name",
+}
+
+# github
+SOCIAL_AUTH_GITHUB_KEY = config("GITHUB_AUTH_KEY", cast=str)
+SOCIAL_AUTH_GITHUB_SECRET = config("GITHUB_AUTH_SECRET", cast=str)
+SOCIAL_AUTH_GITHUB_SCOPE = ["email"]
 
 DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
@@ -174,15 +198,18 @@ DJOSER = {
     "TOKEN_MODEL": None,
     "SOCIAL_AUTH_ALLOWED_REDIRECT_URIS": config(
         "REDIRECT_URLS",
-        cast=list,
-        default=[],
+        cast=lambda v: v if isinstance(v, list) else [s.strip() for s in v.split(",")],
+        default=[
+            "http://localhost:3000/auth/google",
+            "http://localhost:3000/auth/facebook",
+        ],
     ),
 }
 
 # Cros configs
 CORS_ALLOWED_ORIGINS = config(
     "CORS_ALLOWED_ORIGINS",
-    cast=list,
+    cast=lambda v: v if isinstance(v, list) else [s.strip() for s in v.split(",")],
     default=[
         "http://localhost:3000",
         "http://127.0.0.1:3000",
