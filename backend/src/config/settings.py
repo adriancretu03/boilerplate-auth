@@ -186,7 +186,7 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 # github
 SOCIAL_AUTH_GITHUB_KEY = config("GITHUB_AUTH_KEY", cast=str)
 SOCIAL_AUTH_GITHUB_SECRET = config("GITHUB_AUTH_SECRET", cast=str)
-SOCIAL_AUTH_GITHUB_SCOPE = ["email"]
+SOCIAL_AUTH_GITHUB_SCOPE = ["user:email"]
 
 DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
