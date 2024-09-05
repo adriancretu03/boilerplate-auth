@@ -32,7 +32,7 @@ export default function Page() {
                 href="/auth/register"
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
-                Or create an account <span aria-hidden="true">&rarr;</span>
+                Or create a new one <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
           </div>

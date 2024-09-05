@@ -26,9 +26,10 @@ class CustomProviderAuthView(ProviderAuthView):
                 access_token,
                 max_age=settings.AUTH_COOKIE_ACCESS_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
-                secure=settings.AUTH_COOKIE_SECURE,
                 httponly=settings.AUTH_COOKIE_HTTP_ONLY,
-                samesite=settings.AUTH_COOKIE_SAMESITE,
+                ###? uncoment in production ?###
+                # secure=settings.AUTH_COOKIE_SECURE,
+                # samesite=settings.AUTH_COOKIE_SAMESITE,
             )
 
             response.set_cookie(
@@ -36,9 +37,10 @@ class CustomProviderAuthView(ProviderAuthView):
                 refresh_token,
                 max_age=settings.AUTH_COOKIE_REFRESH_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
-                secure=settings.AUTH_COOKIE_SECURE,
                 httponly=settings.AUTH_COOKIE_HTTP_ONLY,
-                samesite=settings.AUTH_COOKIE_SAMESITE,
+                ###? uncoment in production ?###
+                # secure=settings.AUTH_COOKIE_SECURE,
+                # samesite=settings.AUTH_COOKIE_SAMESITE,
             )
 
         return response
@@ -57,9 +59,10 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 access_token,
                 max_age=settings.AUTH_COOKIE_ACCESS_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
-                secure=settings.AUTH_COOKIE_SECURE,
                 httponly=settings.AUTH_COOKIE_HTTP_ONLY,
-                samesite=settings.AUTH_COOKIE_SAMESITE,
+                ###? uncoment in production ?###
+                # secure=settings.AUTH_COOKIE_SECURE,
+                # samesite=settings.AUTH_COOKIE_SAMESITE,
             )
 
             response.set_cookie(
@@ -67,9 +70,10 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 refresh_token,
                 max_age=settings.AUTH_COOKIE_REFRESH_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
-                secure=settings.AUTH_COOKIE_SECURE,
                 httponly=settings.AUTH_COOKIE_HTTP_ONLY,
-                samesite=settings.AUTH_COOKIE_SAMESITE,
+                ###? uncoment in production ?###
+                # secure=settings.AUTH_COOKIE_SECURE,
+                # samesite=settings.AUTH_COOKIE_SAMESITE,
             )
 
         return response
@@ -92,9 +96,10 @@ class CustomRefreshView(TokenRefreshView):
                 access_token,
                 max_age=settings.AUTH_COOKIE_ACCESS_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
-                secure=settings.AUTH_COOKIE_SECURE,
                 httponly=settings.AUTH_COOKIE_HTTP_ONLY,
-                samesite=settings.AUTH_COOKIE_SAMESITE,
+                ###? uncoment in production ?###
+                # secure=settings.AUTH_COOKIE_SECURE,
+                # samesite=settings.AUTH_COOKIE_SAMESITE,
             )
 
         return response

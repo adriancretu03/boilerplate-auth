@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, ChangeEvent, FormEvent } from "react";
 import { toast } from "react-toastify";
 import { useLoginMutation } from "@/redux/features/authApiSlice";
@@ -30,7 +32,7 @@ export default function useLogin() {
       .then(() => {
         dispatch(setAuth());
         toast.success("Login successfully.");
-        router.push("/");
+        router.push("/dashboard");
       })
       .catch(() => {
         toast.error("Failed to login account");

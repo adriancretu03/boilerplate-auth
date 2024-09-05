@@ -1,5 +1,16 @@
+"use client";
+
+import { useSocialAuthenticateMutation } from "@/redux/features/authApiSlice";
 import React from "react";
+import { useSocialAuth } from "../hooks";
+import { Spinner } from "@/app/components/common";
 
 export default function Page() {
-  return <div>Facebook</div>;
+  const [facebookAuthenticate] = useSocialAuthenticateMutation();
+  useSocialAuth(facebookAuthenticate, "facebook");
+  return (
+    <div className="my-8">
+      <Spinner lg />
+    </div>
+  );
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { RegisterForm } from "@/app/components/forms";
 import { Metadata } from "next";
+import { SocialButtons } from "@/app/components/common";
 
 export const metadata: Metadata = {
   title: "BP AUTH | REGISTER",
@@ -24,6 +25,7 @@ export default function Page() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <RegisterForm />
+        <SocialButtons />
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?{" "}

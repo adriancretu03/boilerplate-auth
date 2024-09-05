@@ -24,7 +24,7 @@ const authApiSlice = apiSlice.injectEndpoints({
     }),
     socialAuthenticate: builder.mutation<CreateUserResponse, SocialAuthArgs>({
       query: ({ provider, state, code }) => ({
-        url: `/o/${provider}-oauth2/?state=${encodeURIComponent(
+        url: `/o/${provider}/?state=${encodeURIComponent(
           state
         )}&code=${encodeURIComponent(code)}`,
         method: "POST",
