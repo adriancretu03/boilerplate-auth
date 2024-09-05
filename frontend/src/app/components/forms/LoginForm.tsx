@@ -23,7 +23,7 @@ const LoginForm = () => {
       required: true,
       link: {
         linkText: "Forgot password?",
-        linkURL: "/auth/reset-password",
+        linkURL: "/password-reset",
       },
     },
   ];

@@ -1,21 +1,13 @@
-import Link from "next/link";
 import React from "react";
-import { PasswordResetConfirmForm } from "@/app/components/forms";
+import { PasswordResetForm } from "@/app/components/forms";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "BP AUTH | Password Reset Confirm",
-  description: "BP Auth password reset confirm page",
+  title: "BP AUTH | Password Reset",
+  description: "BP Auth password reset page",
 };
 
-type Props = {
-  params: {
-    uid: string;
-    token: string;
-  };
-};
-
-export default function Page({ params: { uid, token } }: Props) {
+export default function Page() {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -30,7 +22,7 @@ export default function Page({ params: { uid, token } }: Props) {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <PasswordResetConfirmForm uid={uid} token={token} />
+        <PasswordResetForm />
       </div>
     </div>
   );
