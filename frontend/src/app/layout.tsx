@@ -5,14 +5,14 @@ import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 
 // components
-import Navbar from "./components/common/Navbar";
-import Footer from "./components/common/Footer";
-import { Setup } from "./components/utils";
+import { Navbar } from "@/app/components/common";
+import { Footer } from "@/app/components/common";
+import { Setup } from "@/app/components/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BP Auth",
+  title: "BP Auth | ",
   description: "Auth application that provides jwt authentication",
 };
 
@@ -27,7 +27,9 @@ export default function RootLayout({
         <CustomProvider>
           <Setup />
           <Navbar />
-          <div>{children}</div>
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 my-8">
+            {children}
+          </div>
           <Footer />
         </CustomProvider>
       </body>

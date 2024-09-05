@@ -1,7 +1,7 @@
 "use client";
 
-import { useRegister } from "@/auth/hooks";
-import { Form } from "@/components/forms";
+import { useRegister } from "@/app/auth/hooks";
+import { Form } from "@/app/components/forms";
 
 const RegisterForm = () => {
   const {

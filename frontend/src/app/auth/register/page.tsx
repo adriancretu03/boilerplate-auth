@@ -1,7 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import { RegisterForm } from "@/app/components/forms";
+import { Metadata } from "next";
 
-import { RegisterForm } from "@/components/forms";
+export const metadata: Metadata = {
+  title: "BP AUTH | REGISTER",
+  description: "Bp Auth register page",
+};
+
 export default function Page() {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
