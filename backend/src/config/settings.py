@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import dj_database_url
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,7 +34,7 @@ AWS_SES_REGION_NAME = config("AWS_SES_REGION_NAME", cast=str)
 AWS_SES_REGION_ENDPOINT = f"email.{AWS_SES_REGION_NAME}.amazonaws.com"
 AWS_SES_FROM_EMAIL = DEFAULT_FROM_EMAIL
 
-DOMAIN = config("DOMAIN", cast=str, default="localhost:300")
+DOMAIN = config("DOMAIN", cast=str, default="localhost:3000")
 SITE_NAME = "Full Auth"
 
 # Application definition
@@ -90,10 +91,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(
+        default=config("DATABASE_URL", cast=str, default=""),
+        conn_max_age=config("CONN_MAX_AGE", cast=int, default=30),
+        conn_health_checks=True,
+    )
 }
 
 
@@ -189,8 +191,8 @@ SOCIAL_AUTH_GITHUB_SECRET = config("GITHUB_AUTH_SECRET", cast=str)
 SOCIAL_AUTH_GITHUB_SCOPE = ["user:email"]
 
 DJOSER = {
-    "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
-    "ACTIVATION_URL": "activate/{uid}/{token}",
+    "PASSWORD_RESET_CONFIRM_URL": "password-reset-confirm/{uid}/{token}",
+    "ACTIVATION_URL": "activation/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": True,
     "SEND_CONFIRMATION_EMAIL": True,
     "USER_CREATE_PASSWORD_RETYPE": True,
