@@ -1,20 +1,20 @@
 import { apiSlice } from "../services/apiSlice";
 
 interface User {
-    first_name: string;
-    last_name: string;
-    email: string;
+  first_name: string;
+  last_name: string;
+  email: string;
 }
 
 interface SocialAuthArgs {
-    provider: string;
-    state: string;
-    code: string;
+  provider: string;
+  state: string;
+  code: string;
 }
 
 interface CreateUserResponse {
-    success: boolean;
-    user: User;
+  success: boolean;
+  user: User;
 }
 
 const authApiSlice = apiSlice.injectEndpoints({
@@ -35,57 +35,62 @@ const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     login: builder.mutation({
-        query: ({email, password}) => ({
-            url: '/jwt/create/',
-            method: 'POST',
-            body: {email, password}
-        })
+      query: ({ email, password }) => ({
+        url: "/jwt/create/",
+        method: "POST",
+        body: { email, password },
+      }),
     }),
     register: builder.mutation({
-        query: ({first_name, last_name, email, password, re_password}) => ({
-            url: '/jwt/create/',
-            method: 'POST',
-            body: {first_name, last_name, email, password, re_password}
-        })
+      query: ({ first_name, last_name, email, password, re_password }) => ({
+        url: "/users/",
+        method: "POST",
+        body: { first_name, last_name, email, password, re_password },
+      }),
     }),
     verify: builder.mutation({
-        query: () => ({
-            url: '/jwt/verify/',
-            method: 'POST',
-
-        })
+      query: () => ({
+        url: "/jwt/verify/",
+        method: "POST",
+      }),
     }),
     logout: builder.mutation({
-        query: () => ({
-            url: '/logout/',
-            method: 'POST',
-        })
+      query: () => ({
+        url: "/logout/",
+        method: "POST",
+      }),
     }),
     activation: builder.mutation({
-        query: ({uid, token}) => ({
-            url: '/user/activation/',
-            method: 'POST',
-            body: { uid, token},
-        })
+      query: ({ uid, token }) => ({
+        url: "/user/activation/",
+        method: "POST",
+        body: { uid, token },
+      }),
     }),
     resetPassword: builder.mutation({
-        query: (email) => ({
-            url: '/user/reset-password/',
-            method: 'POST',
-            body: { email },
-        })
+      query: (email) => ({
+        url: "/user/reset-password/",
+        method: "POST",
+        body: { email },
+      }),
     }),
-    resetPassword: builder.mutation({
-        query: ({
-            uid, token, new_password, re_new_password
-        }) => ({
-            url: '/user/reset-password-confirm/',
-            method: 'POST',
-            body: { uid, token, new_password, re_new_password },
-        })
-    })
+    resetPasswordConfirm: builder.mutation({
+      query: ({ uid, token, new_password, re_new_password }) => ({
+        url: "/user/reset-password-confirm/",
+        method: "POST",
+        body: { uid, token, new_password, re_new_password },
+      }),
+    }),
   }),
 });
 
-export const { useRetrieveUserQuery, useSocialAuthenticateMutation, useLoginMutation, useRegisterMutation, useVerifyMutation, useLogoutMutation, , useResetPasswordConfirmMutation } =
-  authApiSlice;
+export const {
+  useRetrieveUserQuery,
+  useSocialAuthenticateMutation,
+  useLoginMutation,
+  useRegisterMutation,
+  useVerifyMutation,
+  useLogoutMutation,
+  useResetPasswordMutation,
+  useResetPasswordConfirmMutation,
+} = authApiSlice;
