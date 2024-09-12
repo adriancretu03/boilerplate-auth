@@ -1,6 +1,4 @@
-import Link from "next/link";
-import React from "react";
-import { PasswordResetConfirmForm } from "@/app/components/forms";
+import { PasswordResetConfirmForm } from "@/components/forms";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,20 +15,17 @@ type Props = {
 
 export default function Page({ params: { uid, token } }: Props) {
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
-          alt="BP Auth"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-          className="mx-auto h-10 w-auto"
-        />
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Reset your password
-        </h2>
-      </div>
-
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <PasswordResetConfirmForm uid={uid} token={token} />
+    <div className="flex items-center justify-center py-12">
+      <div className="mx-auto grid w-[350px] gap-6">
+        <div className="grid gap-2 text-center">
+          <h1 className="text-3xl font-bold">Reset your password</h1>
+          <p className="text-balance text-muted-foreground">
+            Provide a strong new password
+          </p>
+        </div>
+        <div className="grid gap-4">
+          <PasswordResetConfirmForm uid={uid} token={token} />
+        </div>
       </div>
     </div>
   );

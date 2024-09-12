@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 
 import dj_database_url
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # external apps
     "rest_framework",
+    "drf_spectacular",
     "djoser",
     "social_django",
     "corsheaders",
@@ -149,6 +151,7 @@ AUTHENTICATION_BACKENDS = [
 
 # DRF configs
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "users.authentication.CustomJWTAuthentication",
     ],
@@ -157,10 +160,24 @@ REST_FRAMEWORK = {
     ],
 }
 
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Boilerplate Auth API",
+    "DESCRIPTION": "boilerplate authentication system",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SCHEMA_PATH_PREFIX": "/api/",
+    # OTHER SETTINGS
+}
+
 # cookie configs
 AUTH_COOKIE = "access"
-AUTH_COOKIE_ACCESS_MAX_AGE = 60 * 5
-AUTH_COOKIE_REFRESH_MAX_AGE = 60 * 60 * 24
+AUTH_COOKIE_ACCESS_MAX_AGE = timedelta(days=1)
+AUTH_COOKIE_REFRESH_MAX_AGE = timedelta(days=7)
 AUTH_COOKIE_SECURE = config("AUTH_COOKIE_SECURE", cast=bool, default=False)
 AUTH_COOKIE_HTTP_ONLY = True
 AUTH_COOKIE_PATH = "/"
@@ -204,6 +221,7 @@ DJOSER = {
         default=[
             "http://localhost:3000/auth/google",
             "http://localhost:3000/auth/facebook",
+            "http://localhost:3000/auth/github",
         ],
     ),
 }

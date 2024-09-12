@@ -1,5 +1,8 @@
+python-decouple
+dj_database_url
+psycopg[binary]
 djangorestframework
+drf-spectacular
 djoser
 django-cors-headers
-python-decouple
 django-ses

@@ -2,8 +2,8 @@
 
 import { useSocialAuthenticateMutation } from "@/redux/features/authApiSlice";
 import React from "react";
-import { useSocialAuth } from "../hooks";
-import { Spinner } from "@/app/components/common";
+import { useSocialAuth } from "../../../hooks";
+import { Spinner } from "@/components/common";
 
 export default function Page() {
   const [facebookAuthenticate] = useSocialAuthenticateMutation();
